@@ -21,4 +21,6 @@ RUN cd $($env:PSModulePath | awk -F ':' '{print $1}') && \
     Expand-Archive ./VMware-PowerCLI-13.0.0-20829139.zip ./ && \
     rm -rf ./VMware-PowerCLI-13.0.0-20829139.zip
 
-ENTRYPOINT pwsh
+COPY docker/build-esxi.ps1 /opt/build-esxi.ps1
+
+ENTRYPOINT ["pwsh", "-NoProfile", "-NonInteractive", "-File", "/opt/build-esxi.ps1"]
