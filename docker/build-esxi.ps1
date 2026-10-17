@@ -29,7 +29,7 @@ $src = Get-EsxImageProfile | Where-Object Name -like "*-$kind" | Select-Object -
 if (-not $src) { throw "profile *-$kind not found" }
 
 $dst = "$($src.Name)-custom"
-$vendor = if ($env:ESXI_VENDOR) { $env:ESXI_VENDOR } else { 'custom' }
+$vendor = if ($env:ESXI_VENDOR) { $env:ESXI_VENDOR } else { 'Geek' }
 New-EsxImageProfile -CloneProfile $src.Name -Name $dst -Vendor $vendor | Out-Null
 Set-EsxImageProfile -ImageProfile $dst -AcceptanceLevel CommunitySupported -Confirm:$false | Out-Null
 
